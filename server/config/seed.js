@@ -108,13 +108,13 @@ export default function seedDatabaseIfNeeded() {
         User.create({
           provider: 'local',
           name: 'Test User',
-          email: 'test@example.com',
+          email: 'test@test.com',
           password: 'test'
         }, {
           provider: 'local',
           role: 'admin',
           name: 'Admin',
-          email: 'admin@example.com',
+          email: 'admin@admin.com',
           password: 'admin'
         })
         .then(() => console.log('finished populating users'))
