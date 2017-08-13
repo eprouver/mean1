@@ -4,10 +4,10 @@ const angular = require('angular');
 export class instructionsComponent {
   problems = [
     'Bootstrap toggles don\'t toggle for these instructions or for the nav bar when in mobile.',
-    'Submitting an update to a ticket is not working.',
-    'When a ticket is updated it doesn\'t update the map.',
-    'Write a test to programatically check that updating a ticket, updates the map.',
-    'Logout is returning an error.'
+    'The map doesn\'t update when the selected ticket changes.',
+    'Make it so only admin users can add new stops.',
+    'Make sure stops can\'t be added that are off the map (-85 to 85 for latitude, -180 to 180 to longitude)',
+    'Logout doesn\'t show you as logged out until you refresh.'
   ];
 
   /*@ngInject*/

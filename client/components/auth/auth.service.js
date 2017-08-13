@@ -67,6 +67,7 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      */
     logout() {
       $cookies.remove('token');
+      //TODO dcdc remove
       currentUser = new _User();
     },
 

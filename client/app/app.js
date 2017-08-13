@@ -19,7 +19,6 @@ import {
 
 import _Auth from '../components/auth/auth.module';
 import account from './account';
-import admin from './admin';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import map from '../components/map/map.component';
@@ -32,7 +31,7 @@ import socket from '../components/socket/socket.service';
 import './app.scss';
 
 angular.module('mean1App', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute, _Auth,
-  account, admin, 'validation.match', navbar, footer, instructions, map, main, constants, socket, util
+  account, 'validation.match', navbar, footer, instructions, map, main, constants, socket, util
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

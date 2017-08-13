@@ -5,31 +5,79 @@
   <div ng-if="$ctrl.isLoggedIn()">
 
     <div class="row">
-      <div ng-class="{'col-xs-6': $ctrl.ticketSelected, 'col-xs-12': !$ctrl.ticketSelected}">
+      <div ng-class="{'col-xs-8': $ctrl.ticketSelected, 'col-xs-12': !$ctrl.ticketSelected}" style="transition: width 1s ease;">
         <map></map>
       </div>
-      <div ng-class="{'col-xs-6': $ctrl.ticketSelected, 'col-xs-12': !$ctrl.ticketSelected}">
+      <div ng-class="{'col-xs-4': $ctrl.ticketSelected, 'hide': !$ctrl.ticketSelected}">
+        <div id="ticket-details" ng-if="$ctrl.ticketSelected" class="animated fadeInRight hide">
+          <h2>{{$ctrl.ticketSelected.name}}</h2>
+          <p>{{$ctrl.ticketSelected.info}}</p>
+
+          <br/>
+
+          <div class="text-right">
+            <button type="button" class="btn btn-default" ng-click="$ctrl.ticketSelected = null">Deselect</button>
+            <button type="button" class="btn btn-danger" ng-click="$ctrl.deleteThing($ctrl.ticketSelected)">Delete</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <h1>Tickets:</h1>
+    <h1>Stops:
+      <div ng-click="$ctrl.$('#add-new').modal('show')" class="pull-right btn btn-success">
+        <i class="fa fa-plus"></i>
+        Add New
+      </div>
+    </h1>
     <div class="row">
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.tickets">
-        <li><a href="#" data-toggle="tooltip" title="{{thing.info}}" ng-click="$root.$broadcast('move-map', thing);">{{thing.name}}<button type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
-      </ul>
+      <div class="col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.tickets" >
+        <a href="#" data-toggle="tooltip" title="{{thing.info}}" ng-class="{'btn-primary active': $ctrl.ticketSelected == thing}" class="btn btn-default btn-block" ng-click="$ctrl.selectTicket(thing)">{{thing.name}}</a>
+        <br/>
+      </div>
     </div>
 
 
+    <div id="add-new" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div ng-click="$ctrl.$('#add-new').modal('hide')" class="close">
+              <i class="fa fa-close"></i>
+            </div>
+            <h2>Add New</h2>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Place Name:</label>
+              <input type="text" class="form-control" placeholder="Place Name" ng-model="$ctrl.newThing.name">
+            </div>
+            <div class="form-group">
+              <label>Info:</label>
+              <textarea class="form-control" placeholder="Info" ng-model="$ctrl.newThing.info"></textarea>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <label>Latitude:</label>
+                  <input type="number" class="form-control" placeholder="Latitude" ng-model="$ctrl.newThing.lat">
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <label>Longitude:</label>
+                  <input type="number" class="form-control" placeholder="Longitude" ng-model="$ctrl.newThing.long">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-    <form class="thing-form">
-      <label>Syncs in realtime across clients</label>
-      <p class="input-group">
-        <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="$ctrl.newThing">
-        <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
-      </span>
-      </p>
-    </form>
   </div>
 </div>

@@ -24,7 +24,8 @@ export class mapComponent {
 
     self.svg = d3.select("#world-map").append("svg")
       .attr('viewBox', [0, 0, self.width, self.height].join(' '));
-    self.worldPath = self.svg.append('path');
+    self.worldPath = self.svg.append('path')
+      .attr('fill', '#2c3e50');
 
     var url = "http://enjalot.github.io/wwsd/data/world/world-110m.geojson";
     d3.json(url, function(err, geojson) {
@@ -42,7 +43,6 @@ export class mapComponent {
       self.worldPath
         .attr("d", path(self.geojson));
 
-
     })
 
 
@@ -50,6 +50,10 @@ export class mapComponent {
 
       if(self.animation){
         self.animation.stop();
+      }
+
+      if(self.lat != data.lat || self.long != data.long){
+        self.svg.selectAll('circle').remove();
       }
 
       self.animation = $({
@@ -77,7 +81,12 @@ export class mapComponent {
             .attr("d", path(self.geojson));
         },
         complete: function(){
-
+          self.svg.append('circle')
+          .attr('class', 'animated fadeIn')
+          .attr('fill', '#E74C3C')
+          .attr('r', 10)
+          .attr('cx', self.width / 2)
+          .attr('cy', self.height / 2)
         }
       });
 

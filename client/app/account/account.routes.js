@@ -18,15 +18,4 @@ export default function routes($routeProvider) {
         $location.path(referrer);
       }
     })
-    .when('/signup', {
-      template: require('./signup/signup.html'),
-      controller: 'SignupController',
-      controllerAs: 'vm'
-    })
-    .when('/settings', {
-      template: require('./settings/settings.html'),
-      controller: 'SettingsController',
-      controllerAs: 'vm',
-      authenticate: true
-    });
 }
