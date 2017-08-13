@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="text-center" ng-hide="$ctrl.isLoggedIn()">
+    <h1>Login to See Map</h1>
+  </div>
+  <div ng-if="$ctrl.isLoggedIn()">
+
+    <div class="row">
+      <div ng-class="{'col-xs-6': $ctrl.ticketSelected, 'col-xs-12': !$ctrl.ticketSelected}">
+        <map></map>
+      </div>
+      <div ng-class="{'col-xs-6': $ctrl.ticketSelected, 'col-xs-12': !$ctrl.ticketSelected}">
+      </div>
+    </div>
+
+    <h1>Tickets:</h1>
+    <div class="row">
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.tickets">
+        <li><a href="#" data-toggle="tooltip" title="{{thing.info}}" ng-click="$root.$broadcast('move-map', thing);">{{thing.name}}<button type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
+      </ul>
+    </div>
+
+
+
+
+    <form class="thing-form">
+      <label>Syncs in realtime across clients</label>
+      <p class="input-group">
+        <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="$ctrl.newThing">
+        <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
+      </span>
+      </p>
+    </form>
+  </div>
+</div>
