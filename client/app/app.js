@@ -1,7 +1,5 @@
 'use strict';
 
-//TODO DCDC: REMOVE
-import 'bootstrap/dist/js/bootstrap.min.js';
 import angular from 'angular';
 // import ngAnimate from 'angular-animate';
 import ngCookies from 'angular-cookies';

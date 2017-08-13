@@ -46,7 +46,7 @@ export class mapComponent {
     })
 
 
-    $scope.$on('move-map', function(scope, data) {
+    function moveMap(data) {
 
       if(self.animation){
         self.animation.stop();
@@ -91,7 +91,7 @@ export class mapComponent {
       });
 
 
-    })
+    }
 
   }
 

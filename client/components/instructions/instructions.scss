@@ -4,12 +4,5 @@
 
   .close{
     color:white;
-
-    &[aria-expanded=false] .fa-chevron-down {
-      display: none;
-    }
-    &[aria-expanded=true] .fa-plus {
-      display: none;
-    }
   }
 }
